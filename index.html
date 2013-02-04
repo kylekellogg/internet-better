@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>How to Internet Better, part 1 - Kyle Kellogg</title>
+  
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  
+  <link rel="stylesheet" href="../../../css/reset.css" type="text/css" />
+  <link rel="stylesheet" href="css/styles.css" type="text/css" />
+</head>
+<body class="impress-not-supported">
+  
+  <div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser</p>
+  </div>
+  
+  <div id="impress">
+    <div class="step slide" id="navigation" data-x="0" data-y="0">
+      <h1>How to Internet Better, part 1</h1>
+      <ol>
+        <li><a href="#/devices">Plan for Multiple Devices</a></li>
+        <li><a href="#/css">CSS Optimization</a></li>
+        <li><a href="#/picture">Responsive Images</a></li>
+        <li><a href="#/testing">Test Your Performance</a></li>
+      </ol>
+    </div>
+    
+    <div class="step slide" id="devices" data-x="0" data-y="0">
+      <h1>Plan for Multiple Devices</h1>
+      <ol>
+        <li>Markup should impact design as little as possible</li>
+        <ul>
+          <li>i.e. changes to markup should impact design as little as possible</li>
+        </ul>
+        <li>Load only what you need when you need it</li>
+        <ul>
+          <li>Microlibraries are available for many things (find them at <a href="http://microjs.com/" target="_blank">http://microjs.com/</a> and all over github)</li>
+        </ul>
+        <li>Separate the need for functionality from the need for resolution</li>
+        <ul>
+          <li>Support as much as possible without javascript or with as little javascript as possible</li>
+          <li>Support as many resolutions as possible using media queries and layout changes</li>
+          <li>Add on to your base and build up to full support (applies to both form and function)</li>
+        </ul>
+        <li>Browsers have inconsistencies and we can't negate them all. Plan for them, but support only what you're able to</li>
+        <ul>
+          <li>&le; IE8 have display inconsistencies, much moreso than FF and Webkit, so keep that in mind</li>
+          <li>CSS3 is great - where available. Use <a href="http://modernizr.com/" target="_blank">Modernizr</a> to detect support</li>
+          <li>Polyfills and shims save lives (or, at least, headaches)</li>
+          <ul>
+            <li><a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills" target="_blank">Polyfills via Modernizr</a></li>
+          </ul>
+        </ul>
+      </ol>
+    </div>
+    
+    <div class="step slide" id="css" data-x="0" data-y="0">
+      <h1>CSS Optimization</h1>
+      <ol>
+        <li>Limit recalculating</li>
+          <ul>
+            <li>Avoid manipulating the DOM, hiding (via <code>display: none</code> or <code>visibility: hidden</code>), and using CSS or javascript animations before page/content is fully loaded</li>
+          </ul>
+        <li>No:</li>
+          <ul>
+            <li>Unnecessary tag identifiers (e.g. <code>ul#navigation</code> and <code>ul.menu</code>), HTML, or CSS</li>
+            <li>Ancestors or chaining</li>
+            <ul>
+              <li>If you absolutely have to, remember there is an order of importance - use it to your advantage</li>
+              <li><a href="http://josh.github.com/css-explain/" target="_blank">http://josh.github.com/css-explain/</a>
+            </ul>
+            <li>Universal or unqualified selectors (e.g. <code>[title^="whatever"]</code> because it applies to everything)</li>
+          </ul>
+        <li>Keep your css simple</li>
+        <li>LESS and SASS/SCSS are nice, but be weary of them</li>
+      </ol>
+    </div>
+    
+    <div class="step slide" id="picture" data-x="0" data-y="0">
+      <h1>Responsive Images via Picturefill.js</h1>
+      <ol>
+        <li>Source at <a href="https://github.com/scottjehl/picturefill" target="_blank">https://github.com/scottjehl/picturefill</a></li>
+        <li>For mobile-first, adaptive approach</li>
+        <li>Can be lighter weight up-front</li>
+        <li>&le; IE8 may require conditional comments due to lack of media query support</li>
+        <li>Example usage:</li>
+      </ol>
+      <div>
+        <pre>&lt;div data-picture data-alt="A giant stone face at The Bayon temple in Angkor Thom, Cambodia"&gt;<br>
+&lt;div data-src="small.jpg"&gt;&lt;/div&gt;<br>
+&lt;div data-src="medium.jpg"     data-media="(min-width: 400px)"&gt;&lt;/div&gt;<br>
+&lt;div data-src="large.jpg"      data-media="(min-width: 800px)"&gt;&lt;/div&gt;<br>
+&lt;div data-src="extralarge.jpg" data-media="(min-width: 1000px)"&gt;&lt;/div&gt;<br>
+<br>
+&lt;!-- Fallback content for non-JS browsers. Same img src as the initial, unqualified source element. --&gt;<br>
+&lt;noscript&gt;<br>
+  &lt;img src="external/imgs/small.jpg" alt="A giant stone face at The Bayon temple in Angkor Thom, Cambodia"&gt;<br>
+&lt;/noscript&gt;<br>
+&lt;/div&gt;
+        </pre>
+    </div>
+    </div>
+    
+    <div class="step slide" id="testing" data-x="0" data-y="0">
+      <h1>Test Your Performance</h1>
+      <ol>
+        <li>Webkit Dev Tools are your friends</li>
+        <ul>
+          <li>Network, for finding heavy assets</li>
+          <li>Timeline, for finding what's taking so damned long</li>
+          <li>Profiles, for testing performance</li>
+          <li>Audits, for testing unused CSS</li>
+        </ul>
+        <li><a href="http://www.responsinator.com/" target="_blank">Responsinator</a> for testing generic design across multiple device sizes</li>
+        <li>I wanted to put something about TDD javascript, but I haven't really done anything with it. Maybe Todd will enlighten us all at some point in the future</li>
+      </ol>
+    </div>
+  </div>
+  
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/impress.js" type="text/javascript"></script>
+  <script src="js/main.js" type="text/javascript"></script>
+  
+</body>
+</html>
